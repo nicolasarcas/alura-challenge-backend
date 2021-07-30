@@ -5,6 +5,10 @@ import com.alurachallengebackend.controller.form.VideosForm;
 import com.alurachallengebackend.model.Video;
 import com.alurachallengebackend.repository.VideosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +34,8 @@ public class VideosController {
     private VideosRepository videosRepository;
 
     @GetMapping
-    public List<Video> listarVideos(){
-        return videosRepository.findAll();
+    public Page<Video> listarVideos(@PageableDefault(page=0,size=5, sort="id", direction = Sort.Direction.ASC)Pageable pageable){
+        return videosRepository.findAll(pageable);
     }
 
     @GetMapping("/{id}")

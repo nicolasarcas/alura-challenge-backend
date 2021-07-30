@@ -1,6 +1,7 @@
 package com.alurachallengebackend.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ public class Video {
     private String titulo;
     private String url;
     private String descricao;
+    private Long idCategoria;
 
     public Video(){}
 
