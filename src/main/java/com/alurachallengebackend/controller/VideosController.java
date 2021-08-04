@@ -46,6 +46,12 @@ public class VideosController {
         return video.map(value -> ResponseEntity.ok(new VideosDto(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/videos/?search={nome}")
+    public ResponseEntity<VideosDto> listarVideoPorNome(@PathVariable String nome){
+        Video videos = videosRepository.findByNome(nome);
+        return videos == null ? ResponseEntity.ok(new VideosDto(videos)) : ResponseEntity.notFound().build();
+    }
+
     @PostMapping
     @Transactional
     public ResponseEntity<VideosDto> postarVideo(@RequestBody @Valid VideosForm form, UriComponentsBuilder uriBuilder){
