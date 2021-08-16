@@ -4,4 +4,6 @@ import com.alurachallengebackend.model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoriasRepository extends JpaRepository<Long, Categoria> {
+
+    Categoria findByNome(String nome);
 }
